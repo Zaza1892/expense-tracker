@@ -49,6 +49,12 @@ def del_expense(expenses):
 
   print("Expense deleted ")
 
+
+def auto_save(expenses):
+  with open("expenses.txt","w") as file : #open text file 
+    for expense in expenses:
+      file.write(f"{expense['name']},{expense['amount']}\n") # write data to txt file
+
 while True : # until the user types 4 the program will keep running 
  
  print("Expense tracker: ")
@@ -62,7 +68,7 @@ while True : # until the user types 4 the program will keep running
 
  if choice=="1":
    add_expense(expenses)
-
+   auto_save(expenses)
  
 
  elif choice =="2":
@@ -80,7 +86,8 @@ while True : # until the user types 4 the program will keep running
 
  elif choice=="5":
     del_expense(expenses)
-
+    auto_save(expenses)
+    
  else:
    print("invalid choice")
   
@@ -89,6 +96,3 @@ while True : # until the user types 4 the program will keep running
 
 
 
-with open("expenses.txt","w") as file : #open text file 
-    for expense in expenses:
-      file.write(f"{expense['name']},{expense['amount']}\n") # write data to txt file
